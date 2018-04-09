@@ -1,15 +1,14 @@
 package com.thoughtworks.collection;
 
 
-import java.awt.*;
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 
 public class Reduce implements SingleLink{
 
     List<Integer> arrayList;
-
+//    修改了Reduce的构造器
+//    把arratlist直接传入singlelink
     public Reduce(List<Integer> arrayList) {
         this.arrayList = arrayList;
         header = new Node();
@@ -65,7 +64,9 @@ public class Reduce implements SingleLink{
         return result;
     }
     //实现接口SingleLink，然后再此函数内使用
-//    public class Singlelink<T> implements SingleLink{
+//    创建了Node类
+//    实现接口
+
         private class Node{
             private Object data;
             private Node next = null;
@@ -143,7 +144,6 @@ public class Reduce implements SingleLink{
             }
             return temp;
         }
-//    }
 
     public Double getMedianInLinkList(SingleLink singleLink) {
 
