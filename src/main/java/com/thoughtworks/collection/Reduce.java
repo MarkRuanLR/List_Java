@@ -18,7 +18,7 @@ public class Reduce implements SingleLink{
             this.addTailPointer(temp);
         }
     }
-
+//    构造器到此结束
     public int getMaximum() {
         return Collections.max(arrayList);
     }
@@ -144,7 +144,8 @@ public class Reduce implements SingleLink{
             }
             return temp;
         }
-
+//实现接口到此结束
+//    以下是测试用例要求的函数
     public Double getMedianInLinkList(SingleLink singleLink) {
 
         double result;
@@ -156,7 +157,7 @@ public class Reduce implements SingleLink{
         }
         return result;
     }
-
+//测试用例要求的函数到此结束
 
     public int getLastOdd() {
         int result=0;
