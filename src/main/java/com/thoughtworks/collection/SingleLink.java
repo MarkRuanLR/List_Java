@@ -1,6 +1,6 @@
 package com.thoughtworks.collection;
 
-public interface SingleLink<T> {
+public interface SingleLink<T>{
     public T getHeaderData();
     public T getTailData();
     public int size();
