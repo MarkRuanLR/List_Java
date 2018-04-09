@@ -4,7 +4,7 @@ package com.thoughtworks.collection;
 import java.util.Collections;
 import java.util.List;
 
-public class Reduce implements SingleLink{
+public class Reduce implements SingleLink<Integer>{
 
     List<Integer> arrayList;
 //    修改了Reduce的构造器
@@ -14,9 +14,6 @@ public class Reduce implements SingleLink{
         header = new Node();
         tail = header;
         size = 0;
-        for(int temp : arrayList){
-            this.addTailPointer(temp);
-        }
     }
 //    构造器到此结束
     public int getMaximum() {
@@ -68,12 +65,12 @@ public class Reduce implements SingleLink{
 //    实现接口
 
         private class Node{
-            private Object data;
+            private Integer data;
             private Node next = null;
             public Node(){
                 data = null;
             }
-            public Node(Object data){
+            public Node(Integer data){
                 this.data = data;
             }
         }
@@ -84,18 +81,18 @@ public class Reduce implements SingleLink{
         private int size;
 
         @Override
-        public Object getHeaderData() {
+        public Integer getHeaderData() {
             return header.data;
         }
 
         @Override
-        public Object getTailData() {
+        public Integer getTailData() {
             return tail.data;
         }
 
         @Override
         public int size() {
-            return size;
+            return this.size;
         }
 
         @Override
@@ -117,7 +114,7 @@ public class Reduce implements SingleLink{
         }
 
         @Override
-        public void addHeadPointer(Object item) {
+        public void addHeadPointer(Integer item) {
             point = new Node(item);
             point.next = header;
             header = point;
@@ -125,17 +122,17 @@ public class Reduce implements SingleLink{
         }
 
         @Override
-        public void addTailPointer(Object item) {
+        public void addTailPointer(Integer item) {
             point = new Node(item);
             tail.next = point;
             tail = point;
-            size++;
+            this.size++;
         }
 
         @Override
-        public Object getNode(int index) {
-            Object temp = 0;
-            if(index >= size)
+        public Integer getNode(int index) {
+            Integer temp = 0;
+            if(index >= arrayList.size())
                 return null;
             point = header;
             for (int i = 0; i <=index ; i++) {
@@ -147,13 +144,21 @@ public class Reduce implements SingleLink{
 //实现接口到此结束
 //    以下是测试用例要求的函数
     public Double getMedianInLinkList(SingleLink singleLink) {
+        double result = 0;
+        Integer temp1,temp2;
+        for (int temp : arrayList){
+            singleLink.addTailPointer(temp);
+        }
 
-        double result;
-        if(this.size()%2 == 0)
-            result = ((int)this.getNode(this.size()/2) + (int)this.getNode(this.size()/2 - 1))/2.0;
+        if(arrayList.size()%2 == 0) {
+            temp1 = singleLink.getNode(arrayList.size() / 2);
+            temp2 = singleLink.getNode(arrayList.size() / 2 + 1);
+
+            result = temp1/2.0+temp2/2.0;
+
+        }
         else{
-
-            result = (int)this.getNode(this.size()/2);
+            result = singleLink.getNode(arrayList.size() / 2);
         }
         return result;
     }
